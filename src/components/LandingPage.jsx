@@ -968,7 +968,7 @@ export default function LandingPage() {
               className="flex flex-wrap gap-3 lg:justify-end"
             >
               <a
-                href="https://t.me/abi_graphics"
+                href="https://t.me/Abbi_Graphics"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Telegram"
