@@ -1,28 +1,38 @@
-
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FiArrowDownRight,
   FiArrowRight,
-  FiCoffee,
+  FiPrinter,
   FiMenu,
   FiMoon,
   FiSun,
   FiX,
+  FiMaximize2,
+  FiChevronLeft,
+  FiChevronRight,
 } from "react-icons/fi";
-import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import { FaTelegramPlane, FaPhone } from "react-icons/fa";
 
 import "../fonts.css";
 import logoDark from "../assets/Logo_dark.svg";
 import logoWhite from "../assets/Logo_white.svg";
 import landingImage from "../assets/landing.jpg";
 import HeroImage from "../assets/HeroImage.jpg";
-const BRAND = "#602B04";
+import product1 from "../products/1.jpg";
+import product2 from "../products/2.jpg";
+import product3 from "../products/3.jpg";
+import product4 from "../products/4.jpg";
+import product5 from "../products/5.jpg";
+import product6 from "../products/6.jpg";
+
+const BRAND = "#091D35";
+const SECONDARY = "#FF9700";
 
 const navigation = [
   { key: "home", href: "#home" },
   { key: "storyNav", href: "#story" },
-  { key: "cultureNav", href: "#culture" },
+  { key: "cultureNav", href: "#services" },
   { key: "promiseNav", href: "#promise" },
   { key: "contactNav", href: "#contact" },
 ];
@@ -31,96 +41,107 @@ const content = {
   en: {
     navigation: {
       home: "Home",
-      storyNav: "Our Story",
-      cultureNav: "Coffee Culture",
-      promiseNav: "Our Promise",
+      storyNav: "About Us",
+      cultureNav: "Our Services",
+      promiseNav: "Why Choose Us",
       contactNav: "Contact",
     },
     headerContact: "Get in Touch",
-    heroEyebrow: "From Ethiopia, with love",
-    heroTitle: "More than coffee.",
-    heroAccent: "A living heritage.",
+    heroEyebrow: "Abi Graphics & Printing",
+    heroTitle: "Bring your ideas",
+    heroAccent: "To brilliant life.",
     heroDescription:
-      "Discover the soul of Ethiopian coffee through its rich origins, extraordinary traditions, and the beautiful ritual of sharing every cup.",
-    explore: "Explore Our Story",
-    ceremony: "The coffee ceremony",
-    heroImageLabel: "The Ethiopian tradition",
-    heroImageTitle:
-      "A moment to slow down. A reason to come together.",
-    originCard: "Rooted in Ethiopia",
-    originCardText: "Shared with the world",
+      "Professional printing and custom graphics services tailored to elevate your brand, style, and everyday gifts with exceptional quality and speed.",
+    explore: "Explore Our Services",
+    ceremony: "View Products",
+    heroImageLabel: "Quality Printing",
+   
+    originCard: "Custom Printing",
+    originCardText: "Made for your brand",
     intro: [
       {
         number: "01",
-        title: "Our roots",
-        text: "Inspired by Ethiopia's remarkable coffee heritage and its enduring connection to the land.",
+        title: "Quality Prints",
+        text: "Using premium materials and state-of-the-art printing techniques for crystal-clear results.",
       },
       {
         number: "02",
-        title: "Our ritual",
-        text: "Celebrating the time, care, and hospitality woven into the traditional coffee ceremony.",
+        title: "Fast Service",
+        text: "Quick turnaround times to ensure your orders are ready exactly when you need them.",
       },
       {
         number: "03",
-        title: "Our purpose",
-        text: "Sharing a meaningful coffee experience that honors culture, craftsmanship, and community.",
+        title: "Affordable Prices",
+        text: "Top-tier custom printing solutions priced competitively for individuals and businesses.",
       },
     ],
-    storyEyebrow: "The heart of Queenly",
-    storyTitle: "A story that begins with a cup.",
+    storyEyebrow: "About Abi Graphics",
+    storyTitle: "Transforming your ideas into reality.",
     storyText1:
-      "Ethiopia holds a special place in coffee history. Here, coffee is more than a drink: it is an invitation to pause, welcome guests, exchange stories, and strengthen the bonds between people.",
+      "At Abi Graphics and Printing, we specialize in turning creative concepts into tangible, high-quality products. Whether you need custom apparel, personalized gifts, or promotional items, we deliver excellence in every print.",
     storyText2:
-      "Queenly Coffee celebrates this living heritage with a deep appreciation for the people, traditions, and culture that make Ethiopian coffee so meaningful.",
-    storyLink: "Experience our culture",
-    buna: "Come, let us drink coffee",
-    cultureEyebrow: "More than a ritual",
-    cultureTitle: "The beauty of the coffee ceremony",
+      "Today, we help businesses, event organizers, and individuals make a lasting impression with our broad selection of custom printing and branding services.",
+  
+    buna: "Order Today",
+    cultureEyebrow: "What We Offer",
+    cultureTitle: "Our Printing Services & Products",
     cultureDescription:
-      "A cherished expression of Ethiopian hospitality, where preparation becomes a ritual and a cup becomes a connection.",
+      "Explore our wide range of custom printing solutions designed to make your items stand out.",
     cultureCards: [
       {
-        title: "Prepare with care",
-        text: "Freshly prepared coffee and thoughtful details turn an everyday moment into a meaningful experience.",
+        title: "T-Shirt & Apparel Printing",
+        text: "Custom high-quality T-shirt printing for events, teams, and unique personal styles.",
       },
       {
-        title: "Gather together",
-        text: "Family, friends, and guests come together to share conversation, warmth, and hospitality.",
+        title: "Mug & Drinkware Printing",
+        text: "Beautiful custom mugs perfect for gifts, corporate branding, and memorable occasions.",
       },
       {
-        title: "Savor the moment",
-        text: "Each serving invites you to slow down, appreciate the flavor, and enjoy the company around you.",
+        title: "Cap & Hat Printing",
+        text: "Stylish, durable custom-printed caps to showcase your logo or personal design.",
+      },
+      {
+        title: "Tote Bag Printing",
+        text: "Eco-friendly, stylish custom tote bags built for daily use and promotions.",
+      },
+      {
+        title: "Photo Frame & Pen Printing",
+        text: "Exquisite photo frames and sleek customized pens for professional and personal gifts.",
+      },
+      {
+        title: "Key Holders & Gift Items",
+        text: "Unique key holders and a wide variety of related promotional gift items.",
       },
     ],
-    moment: "THE MOMENT",
-    coffeeLove: "Coffee, shared with love.",
-    promiseEyebrow: "The Queenly promise",
-    promiseTitle: "Rooted in heritage. Made for connection.",
+    moment: "SERVICE",
+    coffeeLove: "✨ High Quality Printing  ✨ Fast Service  ✨ Affordable Prices",
+    promiseEyebrow: "Why Choose Abi",
+    promiseTitle: "Committed to excellence in every detail.",
     promiseDescription:
-      "Our values reflect what makes Ethiopian coffee culture extraordinary.",
+      "Our core values ensure you receive the best results for all your printing needs.",
     promises: [
       {
-        title: "Authenticity",
-        text: "Honoring the heritage and traditions at the heart of Ethiopian coffee.",
+        title: "Excellence",
+        text: "Flawless prints with sharp details and vibrant, long-lasting colors.",
       },
       {
-        title: "Craftsmanship",
-        text: "Appreciating the care, skill, and attention behind every coffee experience.",
+        title: "Speed",
+        text: "Efficient production workflows designed to respect your deadlines.",
       },
       {
-        title: "Hospitality",
-        text: "Celebrating the generous spirit of welcoming others around the coffee table.",
+        title: "Value",
+        text: "Exceptional quality backed by fair, transparent, and affordable pricing.",
       },
       {
-        title: "Community",
-        text: "Recognizing coffee as a timeless way to build relationships and share stories.",
+        title: "Creativity",
+        text: "Turning your unique ideas and concepts into breathtaking physical items.",
       },
     ],
-    contactEyebrow: "Let us connect",
-    contactTitle: "Let's share a little Ethiopian coffee magic.",
+    contactEyebrow: "Get in Touch",
+    contactTitle: "Let's turn your ideas into reality today!",
     contactDescription:
-      "Connect with Queenly Coffee and join us in celebrating the culture, stories, and traditions behind every cup.",
-    footerTagline: "Ethiopian heritage",
+      "Contact Abi Graphics and Printing now to place your order or discuss your next custom project.",
+    footerTagline: "Abi Graphics & Printing",
     copyright: "All rights reserved.",
     switchLanguage: "አማርኛ",
     themeLight: "Switch to daylight mode",
@@ -133,93 +154,103 @@ const content = {
     navigation: {
       home: "መነሻ",
       storyNav: "ስለ እኛ",
-      cultureNav: "የቡና ባህል",
-      promiseNav: "እሴቶቻችን",
+      cultureNav: " አገልግሎቶቻችን",
+      promiseNav: "ለምን እኛን?",
       contactNav: "ያግኙን",
     },
     headerContact: "ያግኙን",
-    heroEyebrow: "ከኢትዮጵያ በፍቅር",
-    heroTitle: "ቡና ብቻ አይደለም።",
-    heroAccent: "ሕያው ቅርሳችን ነው።",
+    heroEyebrow: "አቢ ግራፊክስ እና ህትመት",
+    heroTitle: "ሀሳብዎን",
+    heroAccent: "ወደ እውነት እንቀይራለን።",
     heroDescription:
-      "በኢትዮጵያ ቡና ልዩ ታሪክ፣ የበለጸገ ባህል እና በአንድ ስኒ ቡና የሚገናኙበትን ውብ ልማድ ይወቁ።",
-    explore: "ታሪካችንን ይወቁ",
-    ceremony: "የቡና ሥነ ሥርዓት",
-    heroImageLabel: "የኢትዮጵያ ባህል",
-    heroImageTitle: "ለመቆምና ለመዝናናት። አብረን ለመሆን ምክንያት።",
-    originCard: "ሥር የሰደደው በኢትዮጵያ",
-    originCardText: "ለዓለም የምናካፍለው",
+      "ለብራንድዎ፣ ለስታይልዎ እና ለስጦታዎችዎ የሚሆን ጥራት ያለው የህትመት እና የንድፍ አገልግሎት በታላቅ  ፍጥነት እና በተመጣጣኝ ዋጋ እናቀርባለን።",
+    explore: "አገልግሎቶቻችንን ይመልከቱ",
+    ceremony: "ምርቶቻችን",
+    heroImageLabel: "ጥራት ያለው ህትመት",
+    originCard: "ልዩ ህትመቶች",
+    originCardText: "ለእርስዎ ፍላጎት የተዘጋጀ",
     intro: [
       {
         number: "01",
-        title: "ሥሮቻችን",
-        text: "ከኢትዮጵያ የበለጸገ የቡና ታሪክና ከመሬታችን ጋር ካለን ጥልቅ ግንኙነት የተነሳን ነን።",
+        title: "ጥራት ያለው ህትመት",
+        text: "ለዓይን የሚስብ፣ ግልጽ እና ዘላቂነት ያላቸውን ዘመናዊ የህትመት እቃዎች እንጠቀማለን።",
       },
       {
         number: "02",
-        title: "ልማዳችን",
-        text: "በባህላዊው የቡና ሥነ ሥርዓት ውስጥ ያለውን ጥንቃቄ፣ ጊዜና እንግዳ ተቀባይነት እናከብራለን።",
+        title: "ፈጣን አገልግሎት",
+        text: "ሥራዎችዎን በሚፈልጉት ሰዓት እና በታቀደለት ጊዜ እናደርሳለን።",
       },
       {
         number: "03",
-        title: "ዓላማችን",
-        text: "ባህልን፣ ጥበብንና ማኅበረሰብን የሚያከብር ልዩ የቡና ልምድ ማካፈል።",
+        title: "ተመጣጣኝ ዋጋ",
+        text: "ለድርጅቶችም ሆነ ለግለሰቦች የሚመጥን ፍትሃዊ እና ጥራት ያለው ዋጋ።",
       },
     ],
-    storyEyebrow: "የኩዊንሊ ማንነት",
-    storyTitle: "ከአንድ ስኒ የሚጀምር ታሪክ።",
+    storyEyebrow: "ስለ አቢ ግራፊክስ",
+    storyTitle: "የእርስዎን ሃሳብ ወደ እውነት እንቀይር!",
     storyText1:
-      "ኢትዮጵያ በቡና ታሪክ ውስጥ ልዩ ቦታ አላት። ቡና መጠጥ ብቻ ሳይሆን ዘና ለማለት፣ እንግዶችን ለመቀበል፣ ታሪክ ለመጋራትና የሰዎችን ትስስር ለማጠናከር የሚያገለግል ውብ ልማድ ነው።",
+      "አቢ ግራፊክስ እና ህትመት የተለያዩ የህትመት ስራዎችን በከፍተኛ ጥራት በማከናወን ላይ ይገኛል። የቲሸርት፣ የካፕ፣ የስጦታ እቃዎች እና ሌሎች ማስታወቂያዎችን እና ህትመቶችን እናስተናግዳለን።",
     storyText2:
-      "ኩዊንሊ ኮፊ ይህንን ሕያው ቅርስ የሚያከብረውን የኢትዮጵያ ሕዝብ፣ ባህልና ወግ በጥልቅ አድናቆት ያስተዋውቃል።",
-    storyLink: "ባህላችንን ይወቁ",
-    buna: "ኑ ቡና እንጠጣ",
-    cultureEyebrow: "ከሥነ ሥርዓት በላይ",
-    cultureTitle: "የቡና ሥነ ሥርዓት ውበት",
-    cultureDescription:
-      "ዝግጅት ወደ ልማድ፣ አንድ ስኒ ቡናም ወደ ግንኙነት የሚቀየርበት የኢትዮጵያ እንግዳ ተቀባይነት መገለጫ።",
+      "ዛሬውኑ ያዙን እና የእርስዎን ሃሳብ ወደ ውብ እና ተጨባጭ ውጤት እንለውጣለን።",
+   
+    buna: "አሁን ያዙን",
+    cultureEyebrow: "የምንሰጣቸው አገልግሎቶች",
+    cultureTitle: "የህትመት እና ስጦታ አገልግሎቶቻችን",
+    cultureDescription: "በማንኛውም ጊዜ እና ሁኔታ ሊጠቀሙባቸው የሚችሉ ጥራት ያላቸው የህትመት ምርቶች።",
     cultureCards: [
       {
-        title: "በጥንቃቄ ማዘጋጀት",
-        text: "በፍቅርና በጥንቃቄ የሚዘጋጅ ቡና የዕለት ተዕለት ጊዜን ወደ ልዩ ትውስታ ይቀይራል።",
+        title: "ቲሸርት ህትመት (T-Shirt Printing)",
+        text: "ለተለያዩ ክንውኖች፣ ቡድኖች እና የድርጅት ስራዎች የሚሆን ማራኪ የቲሸርት ህትመት።",
       },
       {
-        title: "በአንድነት መሰባሰብ",
-        text: "ቤተሰብ፣ ጓደኞችና እንግዶች ለውይይት፣ ለሙቀትና ለመስተንግዶ ይሰባሰባሉ።",
+        title: "የቡና እቃዎች ህትመት (Mug Printing)",
+        text: "ለስጦታ እና ለብራንድ ማስታወቂያ የሚሆን ውብ የማግ ህትመት አገልግሎት።",
       },
       {
-        title: "ወቅቱን መደሰት",
-        text: "እያንዳንዱ ስኒ ቡና ቆም ብለን ጣዕሙንና አብረውን ያሉትን ሰዎች እንድናደንቅ ይጋብዘናል።",
+        title: "የካፕ ህትመት (Cap Printing)",
+        text: "ማራኪ እና ጥራት ያላቸው ቆቦች ላይ የሚደረግ የလိုጎ እና የጽሁፍ ህትመት።",
+      },
+      {
+        title: "የቦርሳ ህትመት (Tote Bag Printing)",
+        text: "ለተለያዩ አገልግሎቶች የሚውሉ ዘመናዊ የቶቴ ቦርሳዎች ህትመት።",
+      },
+      {
+        title: "የፎቶ ፍሬም እና እስክሪብቶ ህትመት",
+        text: "ልዩ የፎቶ ፍሬሞች እና የተወለወሉ የተለያየ ዓይነት እስክሪብቶዎች ህትመት።",
+      },
+      {
+        title: "ቁልፍ መያዣ እና ሌሎች የስጦታ እቃዎች",
+        text: "ቁልፍ መያዣዎች (Key Holders) እና ሌሎች ተዛማጅ የስጦታ እቃዎች።",
       },
     ],
-    moment: "ደረጃ",
-    coffeeLove: "ቡና በፍቅር።",
-    promiseEyebrow: "የኩዊንሊ ቃል",
-    promiseTitle: "በባህል ሥር የሰደደ። ለግንኙነት የተፈጠረ።",
-    promiseDescription: "የኢትዮጵያ የቡና ባህልን ልዩ የሚያደርጉ እሴቶቻችን።",
+    moment: "አገልግሎት",
+    coffeeLove: "✨ ጥራት ያለው ህትመት  ✨ ፈጣን አገልግሎት  ✨ በተመጣጣኝ ዋጋ",
+    promiseEyebrow: "ለምን አቢን ይመርጣሉ?",
+    promiseTitle: "በእያንዳንዱ ዝርዝር ስራ ላይ ጥራትን እናስቀድማለን።",
+    promiseDescription: "ለህትመት ፍላጎቶችዎ ሁልጊዜም አስተማማኝ አጋርዎ ነን።",
     promises: [
       {
-        title: "ትክክለኛነት",
-        text: "በኢትዮጵያ ቡና ማንነት ውስጥ ያሉትን ቅርስና ባህሎች ማክበር።",
+        title: "ጥራት",
+        text: "ግልጽ እና ውብ ቀለማትን የያዙ ጥራት ያላቸው ህትመቶች።",
       },
       {
-        title: "ጥበብና ክህሎት",
-        text: "በእያንዳንዱ የቡና ልምድ ውስጥ ያለውን ጥንቃቄና ክህሎት ማድነቅ።",
+        title: "ፍጥነት",
+        text: "ሰዓቱን የጠበቀ እና ፈጣን የሆነ የአገልግሎት አሰጣጥ።",
       },
       {
-        title: "እንግዳ ተቀባይነት",
-        text: "በቡና ጠረጴዛ ዙሪያ ሰዎችን በፍቅር የመቀበል ባህልን ማክበር።",
+        title: "ዋጋ",
+        text: "ለኪስዎ በሚመጥን መልኩ የተዘጋጀ ተመጣጣኝ ዋጋ።",
       },
       {
-        title: "ማኅበረሰብ",
-        text: "ቡና ግንኙነትን ለመገንባትና ታሪኮችን ለመጋራት የሚያገለግል ዘላቂ ድልድይ መሆኑን ማወቅ።",
+        title: "ፈጠራ",
+        text: "ሃሳብዎን ወደ ማራኪ ውጤት የሚቀይር የሰለጠነ ባለሙያ።",
       },
     ],
-    contactEyebrow: "እንገናኝ",
-    contactTitle: "የኢትዮጵያን የቡና ውበት አብረን እናካፍል።",
+    contactEyebrow: "ያግኙን",
+    contactTitle: "ዛሬውኑ ያዙን እና የእርስዎን ሃሳብ ወደ እውነት እንቀይር!",
     contactDescription:
-      "ከኩዊንሊ ኮፊ ጋር ይገናኙ፤ ከእያንዳንዱ ስኒ ቡና ጀርባ ያለውን ባህል፣ ታሪክና ወግ አብረን እናክብር።",
-    footerTagline: "የኢትዮጵያ ቅርስ",
+      "ለማንኛውም የህትመት ስራ ከኛ ጋር ይገናኙ፤ ፈጣን እና ጥራት ያለው አገልግሎት ያግኙ።",
+    footerTagline: "አቢ ግራፊክስ እና ህትመት",
     copyright: "መብቱ የተጠበቀ ነው።",
     switchLanguage: "English",
     themeLight: "ወደ ቀን ገጽታ ይቀይሩ",
@@ -236,16 +267,19 @@ function BeanBlur({ dark = false }) {
       className="pointer-events-none absolute inset-0 overflow-hidden"
     >
       <div
-        className={`absolute -left-24 top-16 h-64 w-64 rounded-full blur-3xl ${dark ? "bg-white/[0.05]" : "bg-[#602B04]/[0.08]"
-          }`}
+        className={`absolute -left-24 top-16 h-64 w-64 rounded-full blur-3xl ${
+          dark ? "bg-white/[0.05]" : "bg-[#091D35]/[0.08]"
+        }`}
       />
       <div
-        className={`absolute -right-24 top-[38%] h-80 w-80 rounded-full blur-3xl ${dark ? "bg-[#602B04]/[0.12]" : "bg-[#602B04]/[0.10]"
-          }`}
+        className={`absolute -right-24 top-[38%] h-80 w-80 rounded-full blur-3xl ${
+          dark ? "bg-[#FF9700]/[0.12]" : "bg-[#FF9700]/[0.10]"
+        }`}
       />
       <div
-        className={`absolute -bottom-24 left-[30%] h-72 w-72 rounded-full blur-3xl ${dark ? "bg-white/[0.04]" : "bg-[#602B04]/[0.06]"
-          }`}
+        className={`absolute -bottom-24 left-[30%] h-72 w-72 rounded-full blur-3xl ${
+          dark ? "bg-white/[0.04]" : "bg-[#091D35]/[0.06]"
+        }`}
       />
     </div>
   );
@@ -268,8 +302,7 @@ function SectionHeading({ eyebrow, title, description, dark }) {
       className="mx-auto mb-14 max-w-2xl text-center"
     >
       <p
-        className={`mb-4 text-xs font-semibold uppercase tracking-[0.2em] ${dark ? "text-[#602B04]" : "text-[#602B04]"
-          }`}
+        className={`mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#FF9700]`}
       >
         {eyebrow}
       </p>
@@ -278,8 +311,9 @@ function SectionHeading({ eyebrow, title, description, dark }) {
       </h2>
       {description && (
         <p
-          className={`mx-auto mt-5 max-w-xl text-base leading-7 ${dark ? "text-white/65" : "text-stone-600"
-            }`}
+          className={`mx-auto mt-5 max-w-xl text-base leading-7 ${
+            dark ? "text-white/65" : "text-stone-600"
+          }`}
         >
           {description}
         </p>
@@ -292,30 +326,35 @@ export default function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [language, setLanguage] = useState("en");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const t = content[language];
   const isAmharic = language === "am";
   const currentLogo = darkMode ? logoWhite : logoDark;
 
   const page = darkMode
-    ? "bg-[#211710] text-[#FFF9F0]"
-    : "bg-[#FBF7F0] text-[#2D1A10]";
+    ? "bg-[#0B131D] text-[#FFF9F0]"
+    : "bg-[#F7F9FC] text-[#091D35]";
 
   const mutedText = darkMode ? "text-white/65" : "text-stone-600";
-  const sectionBg = darkMode ? "bg-[#2B1D14]" : "bg-[#F2E8DA]";
+  const sectionBg = darkMode ? "bg-[#111C2A]" : "bg-[#EEF3F8]";
 
   const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => {
-    if (!menuOpen) return;
+    if (!menuOpen && !selectedImage) return;
 
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        setSelectedImage(null);
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [menuOpen]);
+  }, [menuOpen, selectedImage]);
 
   const fadeUp = {
     hidden: { opacity: 0, y: 24 },
@@ -326,19 +365,32 @@ export default function LandingPage() {
     },
   };
 
+  const productImages = [product1, product2, product3, product4, product5, product6];
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % productImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+  };
+
   return (
     <div
       lang={isAmharic ? "am" : "en"}
-      className={`${page} min-h-screen overflow-hidden transition-colors duration-300 ${isAmharic ? "amharic-text" : ""}`}
+      className={`${page} min-h-screen overflow-hidden transition-colors duration-300 ${
+        isAmharic ? "amharic-text" : ""
+      }`}
       style={{
-        "--queenly-brand": BRAND,
+        "--abi-brand": BRAND,
+        "--abi-secondary": SECONDARY,
       }}
     >
-      {/* Header: logo only, without brand name text */}
+      {/* Header */}
       <header className="relative z-50">
         <div className="relative z-[60] mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-10">
           <a href="#home" aria-label="Home" className="flex shrink-0 items-center">
-            <img src={currentLogo} alt="Queenly Coffee logo" className="h-12 w-auto" />
+            <img src={currentLogo} alt="Abi Graphics logo" className="h-12 w-auto" />
           </a>
 
           {/* Desktop navigation */}
@@ -347,8 +399,9 @@ export default function LandingPage() {
               <a
                 key={item.key}
                 href={item.href}
-                className={`text-sm transition-colors hover:text-[#562402] ${darkMode ? "text-white/75" : "text-stone-700"
-                  }`}
+                className={`text-sm transition-colors hover:text-[#FF9700] ${
+                  darkMode ? "text-white/75" : "text-stone-700"
+                }`}
               >
                 {t.navigation[item.key]}
               </a>
@@ -364,23 +417,26 @@ export default function LandingPage() {
                 closeMenu();
               }}
               aria-label={isAmharic ? "Switch to English" : "Switch to Amharic"}
-              className={`rounded-full border px-3 py-2 text-xs font-semibold transition sm:px-4 sm:text-sm ${darkMode
+              className={`rounded-full border px-3 py-2 text-xs font-semibold transition sm:px-4 sm:text-sm ${
+                darkMode
                   ? "border-white/15 hover:bg-white/10"
-                  : "border-[#602B04]/15 hover:bg-[#562402]/5"
-                }`}
+                  : "border-[#091D35]/15 hover:bg-[#091D35]/5"
+              }`}
             >
               {isAmharic ? "EN" : "አማ"}
             </button>
 
-            {/* Contact CTA beside the theme switch */}
+            {/* Contact CTA */}
             <a
               href="#contact"
               aria-label={t.headerContact}
-              className="inline-flex h-10 items-center justify-center rounded-full bg-[#602B04] px-3 text-sm font-medium text-white transition hover:bg-[#562402] sm:px-5"
+              className="inline-flex h-10 items-center justify-center rounded-full bg-[#091D35] px-3 text-sm font-medium text-white transition hover:bg-[#122B4B] sm:px-5 border border-[#FF9700]/30"
             >
-              <span className="sm:hidden"><FiArrowRight size={17} /></span>
+              <span className="sm:hidden">
+                <FiArrowRight size={17} />
+              </span>
               <span className="hidden sm:inline">{t.headerContact}</span>
-              <FiArrowRight className="ml-2 hidden sm:inline" />
+              <FiArrowRight className="ml-2 hidden sm:inline text-[#FF9700]" />
             </a>
 
             {/* Theme switch */}
@@ -391,24 +447,26 @@ export default function LandingPage() {
                 closeMenu();
               }}
               aria-label={darkMode ? t.themeLight : t.themeDark}
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition ${darkMode
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition ${
+                darkMode
                   ? "border-white/15 hover:bg-white/10"
-                  : "border-[#602B04]/15 hover:bg-[#562402]/5"
-                }`}
+                  : "border-[#091D35]/15 hover:bg-[#091D35]/5"
+              }`}
             >
               {darkMode ? <FiSun size={18} /> : <FiMoon size={18} />}
             </button>
 
-            {/* Hamburger appears on mobile only */}
+            {/* Hamburger */}
             <button
               type="button"
               onClick={() => setMenuOpen((value) => !value)}
               aria-label={menuOpen ? t.closeMenu : t.openMenu}
               aria-expanded={menuOpen}
-              className={`flex h-10 w-10 items-center justify-center rounded-full border lg:hidden ${darkMode
+              className={`flex h-10 w-10 items-center justify-center rounded-full border lg:hidden ${
+                darkMode
                   ? "border-white/15 hover:bg-white/10"
-                  : "border-[#602B04]/15 hover:bg-[#562402]/5"
-                }`}
+                  : "border-[#091D35]/15 hover:bg-[#091D35]/5"
+              }`}
             >
               {menuOpen ? <FiX size={21} /> : <FiMenu size={21} />}
             </button>
@@ -417,31 +475,30 @@ export default function LandingPage() {
 
         {menuOpen && (
           <>
-            {/* Full-screen blur and dim layer; tap outside the menu to close it. */}
             <button
               type="button"
               aria-label={t.closeMenu}
               onClick={closeMenu}
-              className="fixed inset-0 z-40 cursor-default bg-black/40 backdrop-blur-md transition-opacity duration-300 lg:hidden"
+              className="fixed inset-0 z-45 cursor-default bg-black/40 backdrop-blur-md transition-opacity duration-300 lg:hidden"
             />
 
-            {/* Focused mobile menu */}
             <nav
               aria-label="Mobile navigation"
-              className={`fixed left-4 right-4 top-24 z-[60] mx-auto max-h-[calc(100dvh-7rem)] max-w-md overflow-y-auto rounded-3xl border p-5 shadow-2xl backdrop-blur-2xl lg:hidden ${darkMode
-                  ? "border-white/10 bg-[#211710]/95 text-[#FFF9F0]"
-                  : "border-white/70 bg-[#FBF7F0]/95 text-[#2D1A10]"
-                }`}
+              className={`fixed left-4 right-4 top-24 z-50 mx-auto max-h-[calc(100dvh-7rem)] max-w-md overflow-y-auto rounded-3xl border p-5 shadow-2xl backdrop-blur-2xl lg:hidden ${
+                darkMode
+                  ? "border-white/10 bg-[#0B131D]/95 text-[#FFF9F0]"
+                  : "border-white/70 bg-[#F7F9FC]/95 text-[#091D35]"
+              }`}
             >
               <div className="mb-4 flex items-center justify-between px-3">
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#602B04]">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#FF9700]">
                   {t.heroEyebrow}
                 </span>
                 <button
                   type="button"
                   onClick={closeMenu}
                   aria-label={t.closeMenu}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[#602B04]/15 transition hover:bg-[#562402]/10"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[#091D35]/15 transition hover:bg-[#091D35]/10"
                 >
                   <FiX size={19} />
                 </button>
@@ -453,10 +510,10 @@ export default function LandingPage() {
                     key={item.key}
                     href={item.href}
                     onClick={closeMenu}
-                    className="group flex items-center justify-between rounded-2xl px-4 py-4 text-base font-medium transition duration-200 hover:bg-[#562402]/10"
+                    className="group flex items-center justify-between rounded-2xl px-4 py-4 text-base font-medium transition duration-200 hover:bg-[#091D35]/10"
                   >
                     <span className="flex items-center gap-4">
-                      <span className="text-xs tracking-widest text-[#602B04]/80">
+                      <span className="text-xs tracking-widest text-[#FF9700]">
                         0{index + 1}
                       </span>
                       {t.navigation[item.key]}
@@ -469,10 +526,10 @@ export default function LandingPage() {
               <a
                 href="#contact"
                 onClick={closeMenu}
-                className="mt-4 flex items-center justify-center rounded-full bg-[#602B04] px-5 py-4 text-sm font-semibold text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:bg-[#562402]"
+                className="mt-4 flex items-center justify-center rounded-full bg-[#091D35] px-5 py-4 text-sm font-semibold text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:bg-[#122B4B]"
               >
                 {t.headerContact}
-                <FiArrowRight className="ml-2" />
+                <FiArrowRight className="ml-2 text-[#FF9700]" />
               </a>
             </nav>
           </>
@@ -485,18 +542,14 @@ export default function LandingPage() {
           id="home"
           className="relative isolate min-h-[700px] scroll-mt-24 overflow-hidden sm:min-h-[760px] lg:min-h-[800px]"
         >
-          {/* Full-width hero background image */}
           <img
             src={HeroImage}
             alt={t.heroImageLabel}
-            className="absolute inset-0 -z-20 h-full w-full object-cover"
+            className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
           />
 
-          {/* Dark overlay fading from left to right */}
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#20140D]/90 via-[#20140D]/65 to-[#20140D]/15" />
-
-          {/* Bottom gradient for depth */}
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#20140D]/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#050D17]/95 via-[#091D35]/75 to-[#091D35]/20" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#050D17]/60 via-transparent to-transparent" />
 
           <div className="relative mx-auto grid min-h-[700px] max-w-7xl items-center px-5 py-20 sm:min-h-[760px] sm:px-8 md:py-28 lg:min-h-[800px] lg:px-10">
             <motion.div
@@ -509,9 +562,9 @@ export default function LandingPage() {
             >
               <motion.p
                 variants={fadeUp}
-                className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/80"
+                className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#FF9700]"
               >
-                <span className="h-px w-9 bg-white/80" />
+                <span className="h-px w-9 bg-[#FF9700]" />
                 {t.heroEyebrow}
               </motion.p>
 
@@ -520,14 +573,14 @@ export default function LandingPage() {
                 className="text-4xl font-semibold leading-[1.15] tracking-tight sm:text-6xl lg:text-7xl"
               >
                 {t.heroTitle}
-                <span className="mt-2 block font-medium italic text-[#E6B98A]">
+                <span className="mt-2 block font-medium italic text-[#FF9700]">
                   {t.heroAccent}
                 </span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
-                className="mt-7 max-w-xl text-base leading-8 text-white/80 sm:text-lg"
+                className="mt-7 max-w-xl text-base leading-8 text-white/85 sm:text-lg"
               >
                 {t.heroDescription}
               </motion.p>
@@ -537,31 +590,30 @@ export default function LandingPage() {
                 className="mt-9 flex flex-wrap items-center gap-4"
               >
                 <a
-                  href="#story"
-                  className="inline-flex items-center rounded-full bg-[#602B04] px-7 py-4 text-sm font-medium text-white shadow-lg shadow-[#602B04]/10 transition hover:-translate-y-0.5 hover:bg-[#562402]"
+                  href="#services"
+                  className="inline-flex items-center rounded-full bg-[#FF9700] px-7 py-4 text-sm font-semibold text-[#091D35] shadow-lg shadow-[#FF9700]/20 transition hover:-translate-y-0.5 hover:bg-[#e08500]"
                 >
                   {t.explore}
                   <FiArrowRight className="ml-3 shrink-0" />
                 </a>
 
                 <a
-                  href="#culture"
+                  href="#services"
                   className="inline-flex items-center gap-2 px-3 py-3 text-sm font-medium text-white/90 transition hover:text-white"
                 >
                   {t.ceremony}
-                  <FiArrowDownRight />
+                  <FiArrowDownRight className="text-[#FF9700]" />
                 </a>
               </motion.div>
             </motion.div>
 
-            {/* Hero image caption */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="absolute bottom-6 right-5 z-10 max-w-xs text-right text-white sm:bottom-8 sm:right-8 lg:right-10"
+              className="absolute bottom-6 right-5 z-10 max-w-xs text-right text-white sm:bottom-8 sm:right-8 lg:right-10 hidden sm:block"
             >
-              <p className="text-xs uppercase tracking-[0.2em] text-white/75">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#FF9700]">
                 {t.heroImageLabel}
               </p>
               <p className="mt-3 text-xl font-semibold leading-tight sm:text-2xl">
@@ -570,6 +622,144 @@ export default function LandingPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* Professional 3-Card Image Slideshow (Light Border & Smooth Motion) */}
+        <section className={`relative py-24 overflow-hidden ${darkMode ? "bg-[#09101A]" : "bg-white"}`}>
+          <BeanBlur dark={darkMode} />
+          <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+            <SectionHeading
+              eyebrow="Our Collection"
+              title="Featured Products"
+              description="Browse our smooth slider below. Click any image to view it in full high resolution."
+              dark={darkMode}
+            />
+
+            {/* Slider Container displaying 3 cards simultaneously */}
+            <div className="relative flex items-center justify-center py-6 min-h-[360px] sm:min-h-[460px]">
+              {/* Left Navigation Button */}
+              <button
+                onClick={prevSlide}
+                aria-label="Previous slide"
+                className="absolute left-0 sm:left-4 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-[#FF9700] backdrop-blur-md border border-white/20 shadow-xl transition hover:bg-[#FF9700] hover:text-[#091D35]"
+              >
+                <FiChevronLeft size={24} />
+              </button>
+
+              {/* Right Navigation Button */}
+              <button
+                onClick={nextSlide}
+                aria-label="Next slide"
+                className="absolute right-0 sm:right-4 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-[#FF9700] backdrop-blur-md border border-white/20 shadow-xl transition hover:bg-[#FF9700] hover:text-[#091D35]"
+              >
+                <FiChevronRight size={24} />
+              </button>
+
+              {/* 3-Card Smooth Motion Layout */}
+              <div className="flex w-full items-center justify-center gap-4 sm:gap-6 px-12">
+                {[-1, 0, 1].map((offset) => {
+                  const slideIndex = (currentIndex + offset + productImages.length) % productImages.length;
+                  const isCenter = offset === 0;
+
+                  return (
+                    <motion.div
+                      key={`${slideIndex}-${offset}`}
+                      layout
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{
+                        opacity: isCenter ? 1 : 0.45,
+                        scale: isCenter ? 1 : 0.88,
+                        zIndex: isCenter ? 20 : 10,
+                      }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      onClick={() => {
+                        if (isCenter) {
+                          setSelectedImage(productImages[slideIndex]);
+                        } else {
+                          setCurrentIndex(slideIndex);
+                        }
+                      }}
+                      className={`group relative cursor-pointer overflow-hidden rounded-[2.25rem] bg-[#091D35] shadow-2xl transition-all duration-300 border ${
+                        darkMode ? "border-white/15" : "border-stone-200"
+                      } ${
+                        isCenter
+                          ? "w-full max-w-[340px] sm:max-w-[400px] h-[360px] sm:h-[460px] border-[#FF9700]/50"
+                          : "hidden md:block w-full max-w-[260px] lg:max-w-[300px] h-[300px] sm:h-[380px]"
+                      }`}
+                    >
+                      <img
+                        src={productImages[slideIndex]}
+                        alt={`Product ${slideIndex + 1}`}
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+                      {isCenter && (
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#091D35]/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-6">
+                          <div className="flex w-full items-center justify-between text-white">
+                            <span className="text-sm font-semibold tracking-wide text-[#FF9700]">
+                              View Full Image
+                            </span>
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white">
+                              <FiMaximize2 size={18} />
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Dots Indicator */}
+            <div className="mt-8 flex justify-center gap-2">
+              {productImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    currentIndex === idx ? "w-8 bg-[#FF9700]" : "w-2.5 bg-stone-400/40"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Fullscreen Image Lightbox Modal */}
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedImage(null)}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-8"
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-h-[90vh] max-w-5xl overflow-hidden rounded-[2.5rem] bg-[#091D35] shadow-2xl border border-white/20 p-2 sm:p-4"
+              >
+                <button
+                  type="button"
+                  onClick={() => setSelectedImage(null)}
+                  aria-label="Close modal"
+                  className="absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:bg-[#FF9700] hover:text-[#091D35]"
+                >
+                  <FiX size={22} />
+                </button>
+                <img
+                  src={selectedImage}
+                  alt="Expanded Product"
+                  className="max-h-[82vh] w-auto max-w-full rounded-[2rem] object-contain mx-auto shadow-inner"
+                />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Intro */}
         <section className={`${sectionBg} relative`}>
@@ -583,9 +773,9 @@ export default function LandingPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="border-l border-[#602B04]/20 pl-5"
+                className="border-l-2 border-[#FF9700] pl-5"
               >
-                <p className="text-xs font-semibold tracking-[0.2em] text-[#602B04]">
+                <p className="text-xs font-semibold tracking-[0.2em] text-[#FF9700]">
                   {item.number}
                 </p>
                 <h3 className="mt-3 text-xl font-semibold">{item.title}</h3>
@@ -612,11 +802,11 @@ export default function LandingPage() {
               <img
                 src={landingImage}
                 alt={t.storyTitle}
-                className="relative aspect-[5/4] w-full rounded-[1.75rem] object-cover"
+                className="relative aspect-[5/4] w-full rounded-[1.75rem] object-cover shadow-xl"
               />
 
-              <div className="absolute -bottom-5 right-4 rounded-2xl bg-[#602B04] px-5 py-4 text-white shadow-xl sm:right-8 sm:px-7">
-                <p className="text-lg font-semibold">ቡና ጠጡ</p>
+              <div className="absolute -bottom-5 right-4 rounded-2xl bg-[#091D35] border border-[#FF9700]/30 px-5 py-4 text-white shadow-xl sm:right-8 sm:px-7">
+                <p className="text-lg font-semibold text-[#FF9700]">አቢ ግራፊክስ</p>
                 <p className="mt-1 text-xs text-white/75">{t.buna}</p>
               </div>
             </motion.div>
@@ -628,7 +818,7 @@ export default function LandingPage() {
               viewport={{ once: true, amount: 0.25 }}
               className="pt-5 lg:pt-0"
             >
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#602B04]">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#FF9700]">
                 {t.storyEyebrow}
               </p>
 
@@ -639,21 +829,17 @@ export default function LandingPage() {
               <p className={`mt-6 leading-8 ${mutedText}`}>{t.storyText1}</p>
               <p className={`mt-4 leading-8 ${mutedText}`}>{t.storyText2}</p>
 
-              <a
-                href="#culture"
-                className="mt-8 inline-flex items-center gap-3 text-sm font-semibold text-[#602B04] transition hover:gap-5"
-              >
-                {t.storyLink} <FiArrowRight />
-              </a>
+             
             </motion.div>
           </div>
         </section>
 
-        {/* Coffee culture */}
+        {/* Services */}
         <section
-          id="culture"
-          className={`relative scroll-mt-20 overflow-hidden ${darkMode ? "bg-[#2B1D14]" : "bg-[#F0E5D6]"
-            }`}
+          id="services"
+          className={`relative scroll-mt-20 overflow-hidden ${
+            darkMode ? "bg-[#111C2A]" : "bg-[#E6ECF4]"
+          }`}
         >
           <BeanBlur dark={darkMode} />
 
@@ -665,7 +851,7 @@ export default function LandingPage() {
               dark={darkMode}
             />
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {t.cultureCards.map((item, index) => (
                 <motion.article
                   key={item.title}
@@ -674,16 +860,17 @@ export default function LandingPage() {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.2 }}
                   whileHover={{ y: -5 }}
-                  className={`rounded-[1.5rem] border p-7 transition-colors sm:p-8 ${darkMode
+                  className={`rounded-[1.5rem] border p-7 transition-colors sm:p-8 ${
+                    darkMode
                       ? "border-white/10 bg-white/[0.03]"
-                      : "border-[#602B04]/10 bg-white/65"
-                    }`}
+                      : "border-[#091D35]/10 bg-white/80 shadow-md"
+                  }`}
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#602B04]/10 text-[#602B04]">
-                    <FiCoffee size={22} />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FF9700]/15 text-[#FF9700]">
+                    <FiPrinter size={22} />
                   </div>
 
-                  <p className="mt-7 text-xs font-semibold tracking-[0.15em] text-[#602B04]">
+                  <p className="mt-7 text-xs font-semibold tracking-[0.15em] text-[#FF9700]">
                     {t.moment} 0{index + 1}
                   </p>
 
@@ -696,11 +883,10 @@ export default function LandingPage() {
               ))}
             </div>
 
-            <div className="mt-12 text-center">
-              <p className="text-3xl font-semibold text-[#602B04] sm:text-4xl">
-                ቡና በፍቅር
+            <div className="mt-12 text-center rounded-2xl bg-[#091D35] p-6 text-white shadow-lg border border-[#FF9700]/30 max-w-3xl mx-auto">
+              <p className={`text-sm sm:text-base font-semibold text-[#FF9700]`}>
+                {t.coffeeLove}
               </p>
-              <p className={`mt-3 text-sm ${mutedText}`}>{t.coffeeLove}</p>
             </div>
           </div>
         </section>
@@ -728,10 +914,11 @@ export default function LandingPage() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.2 }}
-                  className={`border-t-2 pt-6 ${darkMode ? "border-[#602B04]/60" : "border-[#602B04]/30"
-                    }`}
+                  className={`border-t-2 pt-6 ${
+                    darkMode ? "border-[#FF9700]" : "border-[#091D35]"
+                  }`}
                 >
-                  <p className="text-3xl font-semibold text-[#602B04]">
+                  <p className="text-3xl font-semibold text-[#FF9700]">
                     0{index + 1}
                   </p>
 
@@ -749,7 +936,7 @@ export default function LandingPage() {
         {/* Contact */}
         <section
           id="contact"
-          className="relative scroll-mt-20 overflow-hidden bg-[#602B04] text-white"
+          className="relative scroll-mt-20 overflow-hidden bg-[#091D35] text-white border-t border-[#FF9700]/20"
         >
           <BeanBlur dark />
 
@@ -760,7 +947,7 @@ export default function LandingPage() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#FF9700]">
                 {t.contactEyebrow}
               </p>
 
@@ -768,7 +955,7 @@ export default function LandingPage() {
                 {t.contactTitle}
               </h2>
 
-              <p className="mt-5 max-w-xl leading-7 text-white/70">
+              <p className="mt-5 max-w-xl leading-7 text-white/75">
                 {t.contactDescription}
               </p>
             </motion.div>
@@ -781,55 +968,51 @@ export default function LandingPage() {
               className="flex flex-wrap gap-3 lg:justify-end"
             >
               <a
-                href="https://t.me/queenly_coffee"
+                href="https://t.me/abi_graphics"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Telegram"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition hover:bg-white/10"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition hover:bg-[#FF9700] hover:text-[#091D35] hover:border-[#FF9700]"
               >
                 <FaTelegramPlane size={19} />
               </a>
 
               <a
-                href="https://wa.me/251923394813"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="WhatsApp"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition hover:bg-white/10"
+                href="tel:0701953230"
+                aria-label="Call us"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition hover:bg-[#FF9700] hover:text-[#091D35] hover:border-[#FF9700]"
               >
-                <FaWhatsapp size={19} />
-              </a>
-
-              <a
-                href="mailto:queenlycoffee@gmail.com"
-                aria-label="Email"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition hover:bg-white/10"
-              >
-                <span className="text-lg">@</span>
+                <FaPhone size={19} />
               </a>
             </motion.div>
           </div>
         </section>
       </main>
 
-      {/* Footer: logo only, no Queenly Coffee name text */}
+      {/* Footer */}
       <footer
-        className={`relative overflow-hidden ${darkMode ? "bg-[#1A120D]" : "bg-[#F6EFE5]"
-          }`}
+        className={`relative overflow-hidden border-t ${
+          darkMode
+            ? "bg-[#060A10] border-white/10"
+            : "bg-[#E6ECF4] border-[#091D35]/10"
+        }`}
       >
         <BeanBlur dark={darkMode} />
 
-        <div className="relative mx-auto flex max-w-7xl flex-col gap-6 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
+        <div className="relative mx-auto flex max-w-7xl flex-col items-center justify-center gap-6 px-5 py-8 text-center sm:px-8 md:flex-row md:items-center md:justify-between md:text-left lg:px-10">
           <a href="#home" aria-label="Home" className="inline-flex w-fit items-center">
-            <img src={currentLogo} alt="Queenly Coffee logo" className="h-10 w-auto" />
+            <img src={currentLogo} alt="Abi Graphics logo" className="h-10 w-auto" />
           </a>
 
-          <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-5 gap-y-3">
+          <nav
+            aria-label="Footer navigation"
+            className="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center md:gap-x-5 md:gap-y-3"
+          >
             {navigation.map((item) => (
               <a
                 key={item.key}
                 href={item.href}
-                className={`text-xs transition hover:text-[#562402] ${mutedText}`}
+                className={`text-xs transition hover:text-[#FF9700] ${mutedText}`}
               >
                 {t.navigation[item.key]}
               </a>
